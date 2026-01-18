@@ -1,6 +1,0 @@
-{
-  "/not-found": "app/not-found.js",
-  "/page": "app/page.js",
-  "/workflow/[id]/page": "app/workflow/[id]/page.js",
-  "/catalog/page": "app/catalog/page.js"
-}

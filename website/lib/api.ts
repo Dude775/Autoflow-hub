@@ -1,0 +1,126 @@
+// הגדרת בסיס API URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// טיפוסים
+export interface Workflow {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  demo_url: string | null;
+  download_url: string | null;
+  created_at: string;
+  tags: string[];
+  downloads: number;
+  rating: number;
+  image_url: string | null;
+}
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  count?: number;
+  error?: string;
+  message?: string;
+}
+
+export interface PurchaseResponse {
+  success: boolean;
+  message: string;
+  data?: {
+    purchase_id: number;
+    workflow_title: string;
+    download_url: string | null;
+  };
+}
+
+// קבלת כל ה-workflows
+export async function getAllWorkflows(category?: string): Promise<Workflow[]> {
+  try {
+    const url = category 
+      ? `${API_BASE_URL}/api/workflows?category=${encodeURIComponent(category)}`
+      : `${API_BASE_URL}/api/workflows`;
+
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result: ApiResponse<Workflow[]> = await response.json();
+    
+    if (!result.success || !result.data) {
+      throw new Error(result.error || 'Failed to fetch workflows');
+    }
+
+    return result.data;
+  } catch (error) {
+    console.error('Error fetching workflows:', error);
+    throw error;
+  }
+}
+
+// קבלת workflow ספציפי
+export async function getWorkflowById(id: number): Promise<Workflow> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/workflows/${id}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result: ApiResponse<Workflow> = await response.json();
+    
+    if (!result.success || !result.data) {
+      throw new Error(result.error || 'Workflow not found');
+    }
+
+    return result.data;
+  } catch (error) {
+    console.error('Error fetching workflow:', error);
+    throw error;
+  }
+}
+
+// ביצוע רכישה
+export async function purchaseWorkflow(
+  workflowId: number, 
+  email: string
+): Promise<PurchaseResponse> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/purchase`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        workflow_id: workflowId,
+        email: email,
+      }),
+    });
+
+    const result: PurchaseResponse = await response.json();
+    
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'Purchase failed');
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Error processing purchase:', error);
+    throw error;
+  }
+}
+
+// קבלת קטגוריות ייחודיות
+export async function getCategories(): Promise<string[]> {
+  try {
+    const workflows = await getAllWorkflows();
+    const categories = [...new Set(workflows.map(w => w.category))];
+    return categories;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
