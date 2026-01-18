@@ -1,7 +1,6 @@
-// הגדרת בסיס API URL
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://autoflow-hub-api.vercel.app';
 
-// טיפוסים
+// Types
 export interface Workflow {
   id: number;
   title: string;
@@ -35,36 +34,76 @@ export interface PurchaseResponse {
   };
 }
 
-// קבלת כל ה-workflows
-export async function getAllWorkflows(category?: string): Promise<Workflow[]> {
-  try {
-    const url = category 
-      ? `${API_BASE_URL}/api/workflows?category=${encodeURIComponent(category)}`
-      : `${API_BASE_URL}/api/workflows`;
+export async function getWorkflows() {
+  console.log('🚀 [API] Fetching from:', `${API_URL}/api/workflows`);
+  console.log('🔧 [API] Environment:', process.env.NODE_ENV);
+  console.log('🌍 [API] NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
 
-    const response = await fetch(url);
-    
+  try {
+    const response = await fetch(`${API_URL}/api/workflows`, {
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`❌ [API Error] Status: ${response.status}`, errorText);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log('✅ [API] Success:', data?.length || 0, 'workflows');
+    return data;
+
+  } catch (error) {
+    console.error('🔥 [API Critical Failure]:', error);
+    throw error;
+  }
+}
+
+// Get all workflows (with optional category filter)
+export async function getAllWorkflows(category?: string): Promise<Workflow[]> {
+  console.log('🚀 [API] Fetching from:', `${API_URL}/api/workflows`);
+  console.log('🔧 [API] Environment:', process.env.NODE_ENV);
+  console.log('🌍 [API] NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+
+  try {
+    const url = category
+      ? `${API_URL}/api/workflows?category=${encodeURIComponent(category)}`
+      : `${API_URL}/api/workflows`;
+
+    const response = await fetch(url, {
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`❌ [API Error] Status: ${response.status}`, errorText);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
     const result: ApiResponse<Workflow[]> = await response.json();
-    
+    console.log('✅ [API] Success:', result.data?.length || 0, 'workflows');
+
     if (!result.success || !result.data) {
       throw new Error(result.error || 'Failed to fetch workflows');
     }
 
     return result.data;
   } catch (error) {
-    console.error('Error fetching workflows:', error);
+    console.error('🔥 [API Critical Failure]:', error);
     throw error;
   }
 }
 
-// קבלת workflow ספציפי
+// Get specific workflow
 export async function getWorkflowById(id: number): Promise<Workflow> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/workflows/${id}`);
+    const response = await fetch(`${API_URL}/api/workflows/${id}`, {
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' }
+    });
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -83,13 +122,13 @@ export async function getWorkflowById(id: number): Promise<Workflow> {
   }
 }
 
-// ביצוע רכישה
+// Process purchase
 export async function purchaseWorkflow(
-  workflowId: number, 
+  workflowId: number,
   email: string
 ): Promise<PurchaseResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/purchase`, {
+    const response = await fetch(`${API_URL}/api/purchase`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -113,7 +152,7 @@ export async function purchaseWorkflow(
   }
 }
 
-// קבלת קטגוריות ייחודיות
+// Get unique categories
 export async function getCategories(): Promise<string[]> {
   try {
     const workflows = await getAllWorkflows();

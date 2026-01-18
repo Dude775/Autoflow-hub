@@ -6,9 +6,15 @@ import workflowsRouter from './routes/workflows';
 const app: Express = express();
 const PORT = 3001;
 
-// CORS - אפשר גישה מ-frontend (localhost:3000)
+// CORS - allow frontend access
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: [
+    'https://autoflow-hub.vercel.app',
+    'http://localhost:3000',
+    /.*\.vercel\.app$/
+  ],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
