@@ -1,5 +1,4 @@
 'use client';
-console.log('🔍 Running on:', typeof window === 'undefined' ? 'SERVER' : 'CLIENT');
 
 import { useEffect, useState } from 'react';
 import { Search, Loader2 } from 'lucide-react';

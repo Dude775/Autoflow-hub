@@ -53,3 +53,9 @@ Portfolio demonstration projects. For production use or collaboration inquiries,
 ---
 
 **⭐ If you found this helpful, please star the repository!**
+
+## Architecture
+- Frontend: Next.js 16 (App Router) - Vercel
+- Backend: Express API - Vercel Serverless
+- Data: 24 n8n workflows (JSON)
+- CORS: Configured for all Vercel domains
