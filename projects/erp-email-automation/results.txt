@@ -1,0 +1,161 @@
+
+User profile
+Codewords Dot Background
+
+Crisp Chat
+ERP Marketing Automation (Portfolio Demo)
+Used 3 times
+Owned by David Rubin
+🏆 39-node enterprise marketing workflow with LangChain + multi-model AI. Works in demo mode for portfolio showcase - no credentials needed!
+
+
+Inputs
+
+You are viewing a historical run, press below to create a new run
+
+Mode
+
+test_sample: 5 customers, full_run: configurable count
+
+
+test_sample
+
+Enable Crm
+
+Log to HubSpot CRM
+
+
+
+Enable Email
+
+⚠️ Actually send emails (test=False)
+
+
+
+Enable Slack
+
+Send Slack notifications
+
+
+
+Customer Count
+
+Customers to process (full_run mode only)
+
+100
+Run Animation Placeholder
+USUALLY TAKES 9s
+
+EST. $0.0054 (AVG)
+
+Outputs
+
+
+
+Execution Summary
+Processed 1 high-value customers across 1 segments. Estimated ROI: 86373.8%
+
+Workflow Metrics
+{5 items
+"total_orders_analyzed":18
+"high_value_customers_found":1
+"campaigns_generated":1
+"delivery_success_rate":"100.0%"
+"langchain_memory_entries":2
+}
+Campaign Results
+[1 item
+0:{6 items
+"customer_id":"CUST-00001"
+"email":"customer2@enterprise.de"
+"segment":"Churned"
+"sent":true
+"gmail_id":"demo_gmail_id_0f532c3f1f8d"
+"crm_logged":false
+}
+]
+analytics
+{5 items
+"total_processed":1
+"segments":{1 item
+"Churned":1
+}
+"emails_sent":1
+"high_value_count":0
+"estimated_roi":"86373.8%"
+}
+Langchain Memory
+{1 item
+"campaign_history":[2 items
+0:{7 items
+"content":"Execute ERP marketing campaign"
+"additional_kwargs":{}0 items
+"response_metadata":{}0 items
+"type":"human"
+"name":NULL
+"id":NULL
+"example":false
+}
+1:{10 items
+"content":"Campaign executed at 2026-01-18T12:15:19.619691: - Processed 1 customers - Segments: {'Churned': 1} - Estimated ROI: 86373.8% Key learnings: This campaign targeted high-value customers with personalized content. "
+"additional_kwargs":{}0 items
+"response_metadata":{}0 items
+"type":"ai"
+"name":NULL
+"id":NULL
+"example":false
+"tool_calls":[]0 items
+"invalid_tool_calls":[]0 items
+"usage_metadata":NULL
+}
+]
+}
+Sample Preview
+{4 items
+"customer":{10 items
+"customer_id":"CUST-00001"
+"customer_name":"Customer 2 Corp"
+"email":"customer2@enterprise.de"
+"total_spend":"11529.84"
+"order_count":4
+"avg_order_value":"2882.46"
+"last_purchase_date":"2025-09-09T12:15:19.529062"
+"days_since_purchase":131
+"purchase_frequency":0.59
+"language":"ja"
+}
+"segment":{4 items
+"segment":"Churned"
+"confidence":0.92
+"reasoning":"Inactive for 90+ days - requires win-back campaign"
+"recommended_products":[3 items
+0:"ProBook Laptop 15""
+1:"UltraView 4K Monitor"
+2:"ErgoMax Office Chair"
+]
+}
+"campaign":{6 items
+"subject_lines":[5 items
+0:"[Churned] Exclusive offer for Customer 2 Corp"
+1:"We noticed you haven't ordered in 131 days..."
+2:"🎁 Special Churned member pricing inside"
+3:"Customer 2 Corp, your personalized recommendations are ready"
+4:"Limited time: Premium access for valued customers like you"
+]
+"body_text":"Dear Customer 2 Corp, As one of our churned customers, we wanted to reach out with something special. Based on your purchase history ($11,529.84 total value), we've identified products that complement your previous orders: • ProBook Laptop 15" • UltraView 4K Monitor • ErgoMax Office Chair We truly value your business and want to ensure you're getting maximum value. Best regards, Your Account Team "
+"cta":"View Churned Recommendations →"
+"template_id":"template_churned"
+"variant_a":{2 items
+"subject":"[Churned] Exclusive offer for Customer 2 Corp"
+"body":"Dear Customer 2 Corp, As one of our churned customers, we wanted to reach out with something special. Based on your purchase history ($11,529.84 total value), we've identified products that complement your previous orders: • ProBook Laptop 15" • UltraView 4K Monitor • ErgoMax Office Chair We truly value your business and want to ensure you're getting maximum value. Best regards, Your Account Team "
+}
+"variant_b":{2 items
+"subject":"We noticed you haven't ordered in 131 days..."
+"body":"Dear Customer 2 Corp, As one of our churned customers, we wanted to reach out with something exclusive. Based on your purchase history ($11,529.84 total value), we've identified products that complement your previous orders: • ProBook Laptop 15" • UltraView 4K Monitor • ErgoMax Office Chair We truly value your business and want to ensure you're getting maximum value. Best regards, Your Account Team "
+}
+}
+"routing_path":"special_offer_campaign"
+}
+Want regular insights?
+Schedule this workflow to run on a regular basis. We'll email you the results.
+
