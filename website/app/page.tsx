@@ -246,6 +246,21 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Creator Attribution Section */}
+      <section className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h3 className="text-2xl font-bold mb-4 text-gray-900">About the Creator</h3>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+            Built by David Rubin - Technical Lead & AI Infrastructure Architect.
+            These workflows represent production systems generating ₪150K+ revenue.
+          </p>
+          <a href="https://system-portfolio.vercel.app"
+             className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+            View Full Portfolio →
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

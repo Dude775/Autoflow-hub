@@ -39,6 +39,16 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="antialiased">
+        {/* Portfolio Back Link */}
+        <div className="border-b border-gray-800 bg-gray-900/95 py-3">
+          <div className="container mx-auto px-6 flex justify-between items-center">
+            <a href="https://system-portfolio.vercel.app" className="text-gray-400 hover:text-white text-sm transition-colors">
+              ← David Rubin Portfolio
+            </a>
+            <span className="text-xs text-gray-500">Workflow Showcase</span>
+          </div>
+        </div>
+
         {/* Navbar */}
         <Navbar />
 
