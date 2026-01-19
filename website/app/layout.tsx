@@ -8,15 +8,17 @@ export const metadata: Metadata = {
   keywords: ['N8N', 'Automation', 'Workflows', 'AI', 'Integration', 'Marketplace'],
   authors: [{ name: 'David775' }],
   openGraph: {
-    title: 'AutoFlow Hub - N8N Workflow Marketplace',
-    description: 'The leading hub for N8N templates',
+    title: 'AutoFlow Hub',
+    description: '24 production workflows • AI agents • Enterprise automation',
+    images: ['/og-image.png'],
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AutoFlow Hub',
-    description: 'The leading hub for N8N templates',
+    description: '24 production workflows • AI agents • Enterprise automation',
+    images: ['/og-image.png'],
   },
   viewport: {
     width: 'device-width',
